@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odoo 18 Functional Certification Study Plan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/i18next@23.11.5/dist/umd/i18next.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .week-section {
+            transition: all 0.3s ease;
+        }
+        .week-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        .week-content.open {
+            max-height: 4000px;
+        }
+        .sidebar {
+            position: sticky;
+            top: 1rem;
+            height: calc(100vh - 2rem);
+        }
+        .nav-link:hover {
+            background-color: #e5e7eb;
+        }
+        .progress-bar {
+            background: linear-gradient(to right, #3b82f6, #60a5fa);
+        }
+        .week-section:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-bold" data-i18n="header.title">Odoo 18 Functional Certification Study Plan</h1>
+                <p class="mt-2" data-i18n="header.subtitle">A Comprehensive 1-Month Study Guide</p>
+            </div>
+            <select id="language-switcher" class="bg-blue-700 text-white p-2 rounded focus:outline-none">
+                <option value="en">English</option>
+                <option value="vi">Tiếng Việt</option>
+            </select>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-8 flex flex-col md:flex-row">
+        <aside class="w-full md:w-1/4 pr-0 md:pr-4 sidebar mb-4 md:mb-0">
+            <nav class="bg-white p-4 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4" data-i18n="sidebar.nav">Navigation</h2>
+                <ul class="space-y-2">
+                    <li><a href="#introduction" class="block p-2 rounded nav-link" data-i18n="sidebar.introduction">Introduction</a></li>
+                    <li><a href="#exam-overview" class="block p-2 rounded nav-link" data-i18n="sidebar.examOverview">Exam Overview</a></li>
+                    <li><a href="#study-strategies" class="block p-2 rounded nav-link" data-i18n="sidebar.studyStrategies">Study Strategies</a></li>
+                    <li><a href="#study-plan" class="block p-2 rounded nav-link" data-i18n="sidebar.studyPlan">Study Plan</a></li>
+                    <li><a href="#modules" class="block p-2 rounded nav-link" data-i18n="sidebar.modules">Modules</a></li>
+                    <li><a href="#resources" class="block p-2 rounded nav-link" data-i18n="sidebar.resources">Resources</a></li>
+                    <li><a href="#tips" class="block p-2 rounded nav-link" data-i18n="sidebar.tips">Final Tips</a></li>
+                </ul>
+            </nav>
+            <div class="mt-4 bg-white p-4 rounded-lg shadow-md">
+                <h3 class="text-lg font-semibold mb-2" data-i18n="sidebar.progress">Progress Tracker</h3>
+                <div class="w-full bg-gray-200 rounded-full h-4">
+                    <div id="progress-bar" class="progress-bar h-4 rounded-full" style="width: 0%"></div>
+                </div>
+                <p class="mt-2 text-gray-700" id="progress-value">0%</p>
+                <input type="range" id="progress-slider" min="0" max="100" value="0" class="w-full mt-2 accent-blue-600">
+            </div>
+        </aside>
+
+        <main class="w-full md:w-3/4">
+            <section id="introduction" class="mb-8 bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4" data-i18n="introduction.title">Introduction</h2>
+                <p class="text-gray-700" data-i18n="introduction.content">
+                    Welcome to your one-month study plan for the Odoo 18 Functional Certification! This plan is designed to help you master the core modules of Odoo 18, understand business flows, and develop effective exam strategies. With 125 questions in 90 minutes and a 70% passing score, preparation is key. Correct answers earn +1 point, incorrect answers deduct -0.5 points, and unanswered questions score 0 points. Focus on hands-on practice, deep understanding, and strategic time management.
+                </p>
+            </section>
+
+            <section id="exam-overview" class="mb-8 bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4" data-i18n="examOverview.title">Exam Overview</h2>
+                <table class="w-full border-collapse border border-gray-300">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="border p-2" data-i18n="examOverview.table.criteria">Criteria</th>
+                            <th class="border p-2" data-i18n="examOverview.table.details">Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border p-2" data-i18n="examOverview.table.name">Certification Name</td>
+                            <td class="border p-2">Odoo 18 Functional Certification</td>
+                        </tr>
+                        <tr>
+                            <td class="border p-2" data-i18n="examOverview.table.nature">Nature</td>
+                            <td class="border p-2" data-i18n="examOverview.table.natureDetail">Nominative (non-transferable)</td>
+                        </tr>
+                        <tr>
+                            <td class="border p-2" data-i18n="examOverview.table.duration">Duration</td>
+                            <td class="border p-2">1.5 hours (90 minutes)</td>
+                        </tr>
+                        <tr>
+                            <td class="border p-2" data-i18n="examOverview.table.questions">Total Questions</td>
+                            <td class="border p-2">125</td>
+                        </tr>
+                        <tr>
+                            <td class="border p-2" data-i18n="examOverview.table.passingScore">Passing Score</td>
+                            <td class="border p-2">70%</td>
+                        </tr>
+                        <tr>
+                            <td class="border p-2" data-i18n="examOverview.table.scoring">Scoring Mechanism</td>
+                            <td class="border p-2" data-i18n="examOverview.table.scoringDetail">Correct: +1, Incorrect: -0.5, Unanswered: 0</td>
+                        </tr>
+                        <tr>
+                            <td class="border p-2" data-i18n="examOverview.table.modules">Modules Tested</td>
+                            <td class="border p-2">Website, eCommerce, Survey, Marketing, CRM, Sales, Purchases, Project, Timesheet, Accounting, Inventory, MRP, HR, Spreadsheet, POS, Studio</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="study-strategies" class="mb-8 bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4" data-i18n="studyStrategies.title">Study Strategies</h2>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li data-i18n="studyStrategies.handsOn">Hands-On Practice: Set up an Odoo 18 instance (Odoo Online or Odoo.sh) and run end-to-end scenarios (e.g., Lead to Payment).</li>
+                    <li data-i18n="studyStrategies.moduleFocus">Module Focus: Prioritize high-weight modules (Accounting, Inventory, MRP: 10% each), then medium (CRM, Sales, Purchases: 6-8%), and low (Website, eCommerce, etc.: 2-4%).</li>
+                    <li data-i18n="studyStrategies.timeManagement">Time Management: Practice with timed mock exams (43 seconds/question). Skip questions taking >3 minutes.</li>
+                    <li data-i18n="studyStrategies.avoidGuessing">Avoid Guessing: Due to the -0.5 point penalty, only answer when confident.</li>
+                    <li data-i18n="studyStrategies.resources">Use Resources: Combine Odoo Documentation, I Value Academy, ExamsEmpire, and Quizlet flashcards.</li>
+                    <li data-i18n="studyStrategies.community">Community Engagement: Join Reddit r/Odoo and Odoo forums for insights.</li>
+                </ul>
+            </section>
+
+            <section id="study-plan" class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4" data-i18n="studyPlan.title">1-Month Study Plan</h2>
+                <div class="week-section bg-white p-6 rounded-lg shadow-md mb-4">
+                    <h3 class="text-xl font-semibold cursor-pointer flex justify-between items-center" onclick="toggleWeek(this)" data-i18n="studyPlan.week1.title">
+                        Week 1: Foundation & High-Priority Modules (Accounting, Inventory)
+                        <span class="text-gray-500">▼</span>
+                    </h3>
+                    <div class="week-content">
+                        <h4 class="text-lg font-semibold mt-4" data-i18n="studyPlan.week1.goals">Goals</h4>
+                        <ul class="list-disc pl-5 text-gray-700">
+                            <li data-i18n="studyPlan.week1.goal1">Understand Odoo basics, UI, and system settings.</li>
+                            <li data-i18n="studyPlan.week1.goal2">Master Accounting (10%) and Inventory (10%) modules.</li>
+                            <li data-i18n="studyPlan.week1.goal3">Practice end-to-end business flows.</li>
+                        </ul>
+                        <h4 class="text-lg font-semibold mt-4" data-i18n="studyPlan.week1.schedule">Schedule</h4>
+                        <ul class="list-disc pl-5 text-gray-700">
+                            <li><strong data-i18n="studyPlan.week1.day12_label">Day 1-2: Odoo Basics & Setup</strong>
+                                <ul class="list-circle pl-5">
+                                    <li data-i18n="studyPlan.week1.day12.task1">Read: Odoo Documentation - User Interface, Company Settings, Users & Access Rights.</li>
+                                    <li data-i18n="studyPlan.week1.day12.task2">Practice: Set up an Odoo 18 instance, configure users, access rights, multi-company settings.</li>
+                                    <li>Resource: <a href="https://www.odoo.com/documentation/18.0/" class="text-blue-600">Odoo Documentation</a>.</li>
+                                    <li>Resource: <a href="https://www.youtube.com/watch?v=69-x2tquQBo" class="text-blue-600">Odoo Setup Product - vì thi chứng chỉ nên hãy hiểu logic chưa cần custom code</a>.</li>
+                                </ul>
+                            </li>
+                            <li><strong data-i18n="studyPlan.week1.day35_label">Day 3-5: Accounting (10%)</strong>
+                                <ul class="list-circle pl-5">
+                                    <li data-i18n="studyPlan.week1.day35.task1">Study: Chart of Accounts, Journals, Taxes, Fiscal Positions, Multi-Currency, Bank Reconciliation, Budgeting.</li>
+                                    <li data-i18n="studyPlan.week1.day35.task2">Practice: Create invoices, vendor bills, reconcile bank statements, generate Balance Sheet and Profit & Loss reports.</li>
+                                    <li>Resource: <a href="https://www.odoo.com/documentation/18.0/applications/finance/accounting.html" class="text-blue-600">Odoo Accounting Docs</a>.</li>
+                                </ul>
+                            </li>
+                            <li><strong data-i18n="studyPlan.week1.day67_label">Day 6-7: Inventory (10%)</strong>
+                                <ul class="list-circle pl-5">
+                                    <li data-i18n="studyPlan.week1.day67.task1">Study: Product Types, Warehouses, Locations, Routes, Stock Moves, Traceability, Inventory Valuation.</li>
+                                    <li data-i18n="studyPlan.week1.day67.task2">Practice: Configure warehouses, set up reordering rules, perform receipts, deliveries, inventory adjustments.</li>
+                                    <li>Resource: <a href="https://www.odoo.com/documentation/18.0/applications/inventory_and_mrp/inventory.html" class="text-blue-600">Odoo Inventory Docs</a>.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <h4 class="text-lg font-semibold mt-4" data-i18n="studyPlan.week1.tasks">Tasks</h4>
+                        <ul class="list-disc pl-5 text-gray-700">
+                            <li data-i18n="studyPlan.week1.task1">Complete 50 practice questions on Accounting and Inventory (I Value Academy).</li>
+                            <li data-i18n="studyPlan.week1.task2">Create a sample business flow: Sales Order → Delivery → Invoice → Payment.</li>
+                            <li data-i18n="studyPlan.week1.task3">Review: Quizlet Odoo V18 Certification Flash Cards.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="week-section bg-white p-6 rounded-lg shadow-md mb-4">
+                    <h3 class="text-xl font-semibold cursor-pointer flex justify-between items-center" onclick="toggleWeek(this)" data-i18n="studyPlan.week2.title">
+                        Week 2: High-Priority (MRP) & Medium-Priority Modules (CRM, Sales)
+                        <span class="text-gray-500">▼</span>
+                    </h3>
+                    <div class="week-content">
+                        <h4 class="text-lg font-semibold mt-4" data-i18n="studyPlan.week2.goals">Goals</h4>
+                        <ul class="list-disc pl-5 text-gray-700">
+                            <li data-i18n="studyPlan.week2.goal1">Master MRP (10%), CRM (8%), Sales (8%) modules.</li>
+                            <li data-i18n="studyPlan.week2.goal2">Understand module integrations.</li>
+                        </ul>
+                        <h4 class="text-lg font-semibold mt-4" data-i18n="studyPlan.week2.schedule">Schedule</h4>
+                        <ul class="list-disc pl-5 text-gray-700">
+                            <li><strong data-i18n="studyPlan.week2.day13_label">Day 1-3: MRP (10%)</strong>
+                                <ul class="list-circle pl-5">
+                                    <li data-i18n="studyPlan.week2.day13.task1">Study: Bills of Materials, Routings, Work Centers, Manufacturing Orders.</li>
+                                    <li data-i18n="studyPlan.week2.day13.task2">Practice: Create BoMs, generate Manufacturing Orders, manage production.</li>
+                                    <li>Resource: <a href="https://www.odoo.com/documentation/18.0/applications/inventory_and_mrp/manufacturing.html" class="text-blue-600">Odoo MRP Docs</a>.</li>
+                                </ul>
+                            </li>
+                            <li><strong data-i18n="studyPlan.week2.day45_label">Day 4-5: CRM (8%)</strong>
+                                <ul class="list-circle pl-5">
+                                    <li data-i18n="studyPlan.week2.day45.task1">Study: Lead Management, Opportunity Pipelines, Activities, Forecasting.</li>
+                                    <li data-i18n="studyPlan.week2.day45.task2">Practice: Create leads, convert to opportunities, manage pipeline stages, analyze CRM reports.</li>
+                                    <li>Resource: <a href="https://www.odoo.com/documentation/18.0/applications/sales/crm.html" class="text-blue-600">Odoo CRM Docs</a>.</li>
+                                </ul>
+                            </li>
+                            <li><strong data-i18n="studyPlan.week2.day67_label">Day 6-7: Sales (8%)</strong>
+                                <ul class="list-circle pl-5">
+                                    <li data-i18n="studyPlan.week2.day67.task1">Study: Quotations, Sales Orders, Pricing, Invoicing Policies, Loyalty Programs.</li>
+                                    <li data-i18n="studyPlan.week2.day67.task2">Practice: Create quotations, convert to sales orders, apply discounts, generate invoices.</li>
+                                    <li>Resource: <a href="https://www.odoo.com/documentation/18.0/applications/sales/sales.html" class="text-blue-600">Odoo Sales Docs</a>.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <h4 class="text-lg font-semibold mt-4" data-i18n="studyPlan.week2.tasks">Tasks</h4>
+                        <ul class="list-disc pl-5 text-gray-700">
+                            <li data-i18n="studyPlan.week2.task1">Complete 50 practice questions on MRP, CRM, and Sales (ExamsEmpire).</li>
+                            <li data-i18n="studyPlan.week2.task2">Practice flow: Lead → Opportunity → Quotation → Sales Order → Delivery.</li>
+                            <li data-i18n="studyPlan.week2.task3">Review: Odoo Slides - CRM & Sales Tutorials.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="week-section bg-white p-6 rounded-lg shadow-md mb-4">
+                    <h3 class="text-xl font-semibold cursor-pointer flex justify-between items-center" onclick="toggleWeek(this)" data-i18n="studyPlan.week3.title">
+                        Week 3: Medium-Priority Modules (Purchases, Project, Timesheet, HR)
+                        <span class="text-gray-500">▼</span>
+                    </h3>
+                    <div class="week-content">
+                        <h4 class="text-lg font-semibold mt-4" data-i18n="studyPlan.week3.goals">Goals</h4>
+                        <ul class="list-disc pl-5 text-gray-700">
+                            <li data-i18n="studyPlan.week3.goal1">Master Purchases (8%), Project (6%), Timesheet (6%), and HR (6%) modules.</li>
+                            <li data-i18n="studyPlan.week3.goal2">Deepen understanding of cross-module integrations.</li>
+                        </ul>
+                        <h4 class="text-lg font-semibold mt-4" data-i18n="studyPlan.week3.schedule">Schedule</h4>
+                        <ul class="list-disc pl-5 text-gray-700">
+                            <li><strong data-i18n="studyPlan.week3.day12_label">Day 1-2: Purchases (8%)</strong>
+                                <ul class="list-circle pl-5">
+                                    <li data-i18n="studyPlan.week3.day12.task1">Study: RFQs, Purchase Orders, Vendor Management, Three-way Matching.</li>
+                                    <li data-i18n="studyPlan.week3.day12.task2">Practice: Create RFQs, convert to POs, receive products, create vendor bills.</li>
+                                    <li>Resource: <a href="https://www.odoo.com/documentation/18.0/applications/inventory_and_mrp/purchase.html" class="text-blue-600">Odoo Purchases Docs</a>.</li>
+                                </ul>
+                            </li>
+                            <li><strong data-i18n="studyPlan.week3.day34_label">Day 3-4: Project (6%) & Timesheet (6%)</strong>
+                                <ul class="list-circle pl-5">
+                                    <li data-i18n="studyPlan.week3.day34.task1">Study: Project Setup, Task Management, Timesheet Recording, Invoicing based on Timesheets.</li>
+                                    <li data-i18n="studyPlan.week3.day34.task2">Practice: Create projects, assign tasks, record timesheets, link to sales orders.</li>
+                                    <li>Resource: <a href="https://www.odoo.com/documentation/18.0/applications/productivity/project.html" class="text-blue-600">Odoo Project Docs</a>, <a href="https://www.odoo.com/documentation/18.0/applications/hr/timesheets.html" class="text-blue-600">Odoo Timesheet Docs</a>.</li>
+                                </ul>
+                            </li>
+                            <li><strong data-i18n="studyPlan.week3.day56_label">Day 5-6: HR (6%)</strong>
+                                <ul class="list-circle pl-5">
+                                    <li data-i18n="studyPlan.week3.day56.task1">Study: Employee Management, Recruitment, Time Off, Payroll, Appraisals.</li>
+                                    <li data-i18n="studyPlan.week3.day56.task2">Practice: Create employee records, manage time-off requests, set up recruitment pipelines.</li>
+                                    <li>Resource: <a href="https://www.odoo.com/documentation/18.0/applications/hr.html" class="text-blue-600">Odoo HR Docs</a>.</li>
+                                </ul>
+                            </li>
+                            <li><strong data-i18n="studyPlan.week3.day7_label">Day 7: Integration Practice</strong>
+                                <ul class="list-circle pl-5">
+                                    <li data-i18n="studyPlan.week3.day7.task1">Practice: Run flow from Purchase Order → Receipt → Vendor Bill → Payment.</li>
+                                    <li data-i18n="studyPlan.week3.day7.task2">Practice: Sales Order → Project → Timesheet → Invoice.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <h4 class="text-lg font-semibold mt-4" data-i18n="studyPlan.week3.tasks">Tasks</h4>
+                        <ul class="list-disc pl-5 text-gray-700">
+                            <li data-i18n="studyPlan.week3.task1">Complete 50 practice questions on Purchases, Project, Timesheet, and HR (I Value Academy).</li>
+                            <li data-i18n="studyPlan.week3.task2">Review: Quizlet - Odoo Functional Training Flashcards.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="week-section bg-white p-6 rounded-lg shadow-md mb-4">
+                    <h3 class="text-xl font-semibold cursor-pointer flex justify-between items-center" onclick="toggleWeek(this)" data-i18n="studyPlan.week4.title">
+                        Week 4: Low-Priority Modules & Final Review
+                        <span class="text-gray-500">▼</span>
+                    </h3>
+                    <div class="week-content">
+                        <h4 class="text-lg font-semibold mt-4" data-i18n="studyPlan.week4.goals">Goals</h4>
+                        <ul class="list-disc pl-5 text-gray-700">
+                            <li data-i18n="studyPlan.week4.goal1">Cover Website (4%), eCommerce (4%), Marketing (4%), Survey (2%), Knowledge (2%), Spreadsheet (2%), POS (2%), Studio (2%).</li>
+                            <li data-i18n="studyPlan.week4.goal2">Simulate full exam and refine strategies.</li>
+                        </ul>
+                        <h4 class="text-lg font-semibold mt-4" data-i18n="studyPlan.week4.schedule">Schedule</h4>
+                        <ul class="list-disc pl-5 text-gray-700">
+                            <li><strong data-i18n="studyPlan.week4.day12_label">Day 1-2: Website, eCommerce, Marketing</strong>
+                                <ul class="list-circle pl-5">
+                                    <li data-i18n="studyPlan.week4.day12.task1">Study: Website Builder, Product Catalog, Email Campaigns, SEO Optimization.</li>
+                                    <li data-i18n="studyPlan.week4.day12.task2">Practice: Build a simple website, set up an eCommerce store, create a marketing campaign.</li>
+                                    <li>Resource: <a href="https://www.odoo.com/documentation/18.0/applications/websites.html" class="text-blue-600">Odoo Website Docs</a>, <a href="https://www.odoo.com/documentation/18.0/applications/sales/ecommerce.html" class="text-blue-600">Odoo eCommerce Docs</a>.</li>
+                                </ul>
+                            </li>
+                            <li><strong data-i18n="studyPlan.week4.day3_label">Day 3: Survey, Knowledge, Spreadsheet, POS</strong>
+                                <ul class="list-circle pl-5">
+                                    <li data-i18n="studyPlan.week4.day3.task1">Study: Survey Creation, Knowledge Articles, Spreadsheet Reporting, POS Operations.</li>
+                                    <li data-i18n="studyPlan.week4.day3.task2">Practice: Create a survey, manage knowledge articles, build a spreadsheet report, process POS transactions.</li>
+                                    <li>Resource: <a href="https://www.odoo.com/documentation/18.0/" class="text-blue-600">Odoo Documentation</a>.</li>
+                                </ul>
+                            </li>
+                            <li><strong data-i18n="studyPlan.week4.day4_label">Day 4: Studio</strong>
+                                <ul class="list-circle pl-5">
+                                    <li data-i18n="studyPlan.week4.day4.task1">Study: Custom Fields, View Customization, Automated Actions.</li>
+                                    <li data-i18n="studyPlan.week4.day4.task2">Practice: Add custom fields, modify views, set up automated actions using Odoo Studio.</li>
+                                    <li>Resource: <a href="https://www.odoo.com/documentation/18.0/applications/studio.html" class="text-blue-600">Odoo Studio Docs</a>.</li>
+                                </ul>
+                            </li>
+                            <li><strong data-i18n="studyPlan.week4.day57_label">Day 5-7: Final Review & Mock Exams</strong>
+                                <ul class="list-circle pl-5">
+                                    <li data-i18n="studyPlan.week4.day57.task1">Review all modules, focusing on weak areas.</li>
+                                    <li data-i18n="studyPlan.week4.day57.task2">Complete full mock exams (I Value Academy, ExamsEmpire).</li>
+                                    <li data-i18n="studyPlan.week4.day57.task3">Practice time management: Skip questions taking >3 minutes, avoid guessing due to -0.5 point penalty.</li>
+                                    <li>Resource: <a href="https://academy.ivalue-s.com/slides/free-odoo-certification-practice-test-4" class="text-blue-600">I Value Academy</a>, <a href="https://www.examsempire.com/odoo-v18/" class="text-blue-600">ExamsEmpire</a>.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <h4 class="text-lg font-semibold mt-4" data-i18n="studyPlan.week4.tasks">Tasks</h4>
+                        <ul class="list-disc pl-5 text-gray-700">
+                            <li data-i18n="studyPlan.week4.task1">Complete 100 practice questions covering all modules.</li>
+                            <li data-i18n="studyPlan.week4.task2">Simulate a full 125-question exam under timed conditions.</li>
+                            <li data-i18n="studyPlan.week4.task3">Review: Odoo Certification Sample Test, Reddit r/Odoo discussions.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="modules" class="mb-8 bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4" data-i18n="modules.title">Module Breakdown</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                        <h3 class="text-lg font-semibold" data-i18n="modules.accounting.title">Accounting (10%)</h3>
+                        <p class="text-gray-700" data-i18n="modules.accounting.content">Chart of Accounts, Journals, Taxes, Fiscal Positions, Bank Reconciliation, Budgeting, Multi-Currency. Practice creating invoices and generating financial reports.</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                        <h3 class="text-lg font-semibold" data-i18n="modules.inventory.title">Inventory (10%)</h3>
+                        <p class="text-gray-700" data-i18n="modules.inventory.content">Product Types, Warehouses, Routes, Stock Moves, Traceability, Inventory Valuation. Configure warehouses and reordering rules.</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                        <h3 class="text-lg font-semibold" data-i18n="modules.mrp.title">MRP (10%)</h3>
+                        <p class="text-gray-700" data-i18n="modules.mrp.content">Bills of Materials, Routings, Work Centers, Manufacturing Orders. Create BoMs and manage production processes.</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                        <h3 class="text-lg font-semibold" data-i18n="modules.crm.title">CRM (8%)</h3>
+                        <p class="text-gray-700" data-i18n="modules.crm.content">Lead Management, Opportunity Pipelines, Activities, Forecasting. Manage leads and analyze pipeline reports.</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                        <h3 class="text-lg font-semibold" data-i18n="modules.sales.title">Sales (8%)</h3>
+                        <p class="text-gray-700" data-i18n="modules.sales.content">Quotations, Sales Orders, Pricing, Invoicing Policies. Create quotations and apply discounts.</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                        <h3 class="text-lg font-semibold" data-i18n="modules.purchases.title">Purchases (8%)</h3>
+                        <p class="text-gray-700" data-i18n="modules.purchases.content">RFQs, Purchase Orders, Vendor Management, Three-way Matching. Create POs and manage vendor bills.</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                        <h3 class="text-lg font-semibold" data-i18n="modules.project.title">Project (6%)</h3>
+                        <p class="text-gray-700" data-i18n="modules.project.content">Project Setup, Task Management, Milestones. Create projects and assign tasks.</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                        <h3 class="text-lg font-semibold" data-i18n="modules.timesheet.title">Timesheet (6%)</h3>
+                        <p class="text-gray-700" data-i18n="modules.timesheet.content">Timesheet Recording, Invoicing based on Timesheets. Record timesheets and link to sales orders.</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                        <h3 class="text-lg font-semibold" data-i18n="modules.hr.title">HR (6%)</h3>
+                        <p class="text-gray-700" data-i18n="modules.hr.content">Employee Management, Recruitment, Time Off, Payroll. Manage employee records and recruitment pipelines.</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                        <h3 class="text-lg font-semibold" data-i18n="modules.website.title">Website (4%)</h3>
+                        <p class="text-gray-700" data-i18n="modules.website.content">Website Builder, Blog Posts, SEO Optimization. Build and customize websites.</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                        <h3 class="text-lg font-semibold" data-i18n="modules.ecommerce.title">eCommerce (4%)</h3>
+                        <p class="text-gray-700" data-i18n="modules.ecommerce.content">Product Catalog, Checkout Process, Payment Gateways. Set up an eCommerce store.</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                        <h3 class="text-lg font-semibold" data-i18n="modules.marketing.title">Marketing (4%)</h3>
+                        <p class="text-gray-700" data-i18n="modules.marketing.content">Email Campaigns, Marketing Automation. Create and analyze marketing campaigns.</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                        <h3 class="text-lg font-semibold" data-i18n="modules.survey.title">Survey (2%)</h3>
+                        <p class="text-gray-700" data-i18n="modules.survey.content">Survey Creation, Question Types, Result Analysis. Design and distribute surveys.</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                        <h3 class="text-lg font-semibold" data-i18n="modules.knowledge.title">Knowledge (2%)</h3>
+                        <p class="text-gray-700" data-i18n="modules.knowledge.content">Knowledge Articles, Categories, Access Control. Manage and share knowledge articles.</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                        <h3 class="text-lg font-semibold" data-i18n="modules.spreadsheet.title">Spreadsheet (2%)</h3>
+                        <p class="text-gray-700" data-i18n="modules.spreadsheet.content">Spreadsheet Reporting, Pivot Tables. Create custom reports with Odoo Spreadsheet.</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                        <h3 class="text-lg font-semibold" data-i18n="modules.pos.title">POS (2%)</h3>
+                        <p class="text-gray-700" data-i18n="modules.pos.content">POS Operations, Offline Mode, Payment Methods. Process sales transactions.</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                        <h3 class="text-lg font-semibold" data-i18n="modules.studio.title">Studio (2%)</h3>
+                        <p class="text-gray-700" data-i18n="modules.studio.content">Custom Fields, View Customization, Automated Actions. Customize Odoo without coding.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="resources" class="mb-8 bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4" data-i18n="resources.title">Resources</h2>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li><a href="https://www.odoo.com/documentation/18.0/" class="text-blue-600" data-i18n="resources.doc">Odoo 18 Documentation</a>: Official guide for all modules.</li>
+                    <li><a href="https://www.odoo.com/slides/odoo-18-functional-certification-442" class="text-blue-600" data-i18n="resources.slides">Odoo Slides</a>: Video tutorials and MCQs.</li>
+                    <li><a href="https://academy.ivalue-s.com/slides/free-odoo-certification-practice-test-4" class="text-blue-600" data-i18n="resources.iva">I Value Academy</a>: Free and paid practice tests.</li>
+                    <li><a href="https://www.examsempire.com/odoo-v18/" class="text-blue-600" data-i18n="resources.exams">ExamsEmpire</a>: Paid practice questions and exam simulations.</li>
+                    <li><a href="https://quizlet.com/994321158/odoo-v18-certification-flash-cards/" class="text-blue-600" data-i18n="resources.quizlet">Quizlet Flashcards</a>: Quick review of key concepts.</li>
+                    <li><a href="https://www.reddit.com/r/Odoo/" class="text-blue-600" data-i18n="resources.reddit">Reddit r/Odoo</a>: Community insights and tips.</li>
+                    <li><a href="https://www.firebits.net/slides/odoo-18-functional-experience-accelerate-program-50" class="text-blue-600" data-i18n="resources.firebits">FireBits</a>: Comprehensive course with case studies.</li>
+                </ul>
+            </section>
+
+            <section id="tips" class="mb-8 bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4" data-i18n="tips.title">Final Tips & Community Insights</h2>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li data-i18n="tips.handsOn">Practice Hands-On: Run end-to-end scenarios in Odoo 18.</li>
+                    <li data-i18n="tips.why">Understand "Why": Learn why Odoo features solve business problems.</li>
+                    <li data-i18n="tips.time">Manage Time: Skip questions taking >3 minutes.</li>
+                    <li data-i18n="tips.guessing">Avoid Guessing: Only answer when confident due to -0.5 point penalty.</li>
+                    <li data-i18n="tips.community1">"Accounting, Inventory, and MRP have many tricky questions. Focus on hands-on experience." - Bashir Idris</li>
+                    <li data-i18n="tips.community2">"The exam is comprehensive but approachable with solid platform understanding. Expertise comes from real-world experience." - Kamel Mohamed</li>
+                    <li data-i18n="tips.community3">"Certification validates knowledge, but true expertise is built through continuous learning and implementation." - Dhruvik Dudhat</li>
+                    <li data-i18n="tips.community4">"The exam is long but covers core features. Continuous learning is essential." - Ahmed Al Maghrabi</li>
+                    <li data-i18n="tips.community5">"New features in POS, Projects, and Sales are impressive. Budgeting in Accounting is a game-changer." - Hasnain Ali</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <footer class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-4">
+        <div class="container mx-auto px-4 text-center">
+            <p data-i18n="footer">Created by Grok 3 for Odoo 18 Certification Preparation | July 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize i18next for multilingual support
+        i18next.init({
+            lng: 'en',
+            resources: {
+                en: {
+                    translation: {
+                        header: {
+                            title: "Odoo 18 Functional Certification Study Plan",
+                            subtitle: "A Comprehensive 1-Month Study Guide"
+                        },
+                        sidebar: {
+                            nav: "Navigation",
+                            introduction: "Introduction",
+                            examOverview: "Exam Overview",
+                            studyStrategies: "Study Strategies",
+                            studyPlan: "Study Plan",
+                            modules: "Modules",
+                            resources: "Resources",
+                            tips: "Final Tips",
+                            progress: "Progress Tracker"
+                        },
+                        introduction: {
+                            title: "Introduction",
+                            content: "Welcome to your one-month study plan for the Odoo 18 Functional Certification! This plan is designed to help you master the core modules of Odoo 18, understand business flows, and develop effective exam strategies. With 125 questions in 90 minutes and a 70% passing score, preparation is key. Correct answers earn +1 point, incorrect answers deduct -0.5 points, and unanswered questions score 0 points. Focus on hands-on practice, deep understanding, and strategic time management."
+                        },
+                        examOverview: {
+                            title: "Exam Overview",
+                            table: {
+                                criteria: "Criteria",
+                                details: "Details",
+                                name: "Certification Name",
+                                nature: "Nature",
+                                natureDetail: "Nominative (non-transferable)",
+                                duration: "Duration",
+                                questions: "Total Questions",
+                                passingScore: "Passing Score",
+                                scoring: "Scoring Mechanism",
+                                scoringDetail: "Correct: +1, Incorrect: -0.5, Unanswered: 0",
+                                modules: "Modules Tested"
+                            }
+                        },
+                        studyStrategies: {
+                            title: "Study Strategies",
+                            handsOn: "Hands-On Practice: Set up an Odoo 18 instance (Odoo Online or Odoo.sh) and run end-to-end scenarios (e.g., Lead to Payment).",
+                            moduleFocus: "Module Focus: Prioritize high-weight modules (Accounting, Inventory, MRP: 10% each), then medium (CRM, Sales, Purchases: 6-8%), and low (Website, eCommerce, etc.: 2-4%).",
+                            timeManagement: "Time Management: Practice with timed mock exams (43 seconds/question). Skip questions taking >3 minutes.",
+                            avoidGuessing: "Avoid Guessing: Due to the -0.5 point penalty, only answer when confident.",
+                            resources: "Use Resources: Combine Odoo Documentation, I Value Academy, ExamsEmpire, and Quizlet flashcards.",
+                            community: "Community Engagement: Join Reddit r/Odoo and Odoo forums for insights."
+                        },
+                        studyPlan: {
+                            title: "1-Month Study Plan",
+                            week1: {
+                                title: "Week 1: Foundation & High-Priority Modules (Accounting, Inventory)",
+                                goals: "Goals",
+                                goal1: "Understand Odoo basics, UI, and system settings.",
+                                goal2: "Master Accounting (10%) and Inventory (10%) modules.",
+                                goal3: "Practice end-to-end business flows.",
+                                schedule: "Schedule",
+                                day12_label: "Day 1-2: Odoo Basics & Setup",
+                                day12: { task1: "Read: Odoo Documentation - User Interface, Company Settings, Users & Access Rights.", task2: "Practice: Set up an Odoo 18 instance, configure users, access rights, multi-company settings." },
+                                day35_label: "Day 3-5: Accounting (10%)",
+                                day35: { task1: "Study: Chart of Accounts, Journals, Taxes, Fiscal Positions, Multi-Currency, Bank Reconciliation, Budgeting.", task2: "Practice: Create invoices, vendor bills, reconcile bank statements, generate Balance Sheet and Profit & Loss reports." },
+                                day67_label: "Day 6-7: Inventory (10%)",
+                                day67: { task1: "Study: Product Types, Warehouses, Locations, Routes, Stock Moves, Traceability, Inventory Valuation.", task2: "Practice: Configure warehouses, set up reordering rules, perform receipts, deliveries, inventory adjustments." },
+                                tasks: "Tasks",
+                                task1: "Complete 50 practice questions on Accounting and Inventory (I Value Academy).",
+                                task2: "Create a sample business flow: Sales Order → Delivery → Invoice → Payment.",
+                                task3: "Review: Quizlet Odoo V18 Certification Flash Cards."
+                            },
+                            week2: {
+                                title: "Week 2: High-Priority (MRP) & Medium-Priority Modules (CRM, Sales)",
+                                goals: "Goals",
+                                goal1: "Master MRP (10%), CRM (8%), Sales (8%) modules.",
+                                goal2: "Understand module integrations.",
+                                schedule: "Schedule",
+                                day13_label: "Day 1-3: MRP (10%)",
+                                day13: { task1: "Study: Bills of Materials, Routings, Work Centers, Manufacturing Orders.", task2: "Practice: Create BoMs, generate Manufacturing Orders, manage production." },
+                                day45_label: "Day 4-5: CRM (8%)",
+                                day45: { task1: "Study: Lead Management, Opportunity Pipelines, Activities, Forecasting.", task2: "Practice: Create leads, convert to opportunities, manage pipeline stages, analyze CRM reports." },
+                                day67_label: "Day 6-7: Sales (8%)",
+                                day67: { task1: "Study: Quotations, Sales Orders, Pricing, Invoicing Policies, Loyalty Programs.", task2: "Practice: Create quotations, convert to sales orders, apply discounts, generate invoices." },
+                                tasks: "Tasks",
+                                task1: "Complete 50 practice questions on MRP, CRM, and Sales (ExamsEmpire).",
+                                task2: "Practice flow: Lead → Opportunity → Quotation → Sales Order → Delivery.",
+                                task3: "Review: Odoo Slides - CRM & Sales Tutorials."
+                            },
+                            week3: {
+                                title: "Week 3: Medium-Priority Modules (Purchases, Project, Timesheet, HR)",
+                                goals: "Goals",
+                                goal1: "Master Purchases (8%), Project (6%), Timesheet (6%), and HR (6%) modules.",
+                                goal2: "Deepen understanding of cross-module integrations.",
+                                schedule: "Schedule",
+                                day12_label: "Day 1-2: Purchases (8%)",
+                                day12: { task1: "Study: RFQs, Purchase Orders, Vendor Management, Three-way Matching.", task2: "Practice: Create RFQs, convert to POs, receive products, create vendor bills." },
+                                day34_label: "Day 3-4: Project (6%) & Timesheet (6%)",
+                                day34: { task1: "Study: Project Setup, Task Management, Timesheet Recording, Invoicing based on Timesheets.", task2: "Practice: Create projects, assign tasks, record timesheets, link to sales orders." },
+                                day56_label: "Day 5-6: HR (6%)",
+                                day56: { task1: "Study: Employee Management, Recruitment, Time Off, Payroll, Appraisals.", task2: "Practice: Create employee records, manage time-off requests, set up recruitment pipelines." },
+                                day7_label: "Day 7: Integration Practice",
+                                day7: { task1: "Practice: Run flow from Purchase Order → Receipt → Vendor Bill → Payment.", task2: "Practice: Sales Order → Project → Timesheet → Invoice." },
+                                tasks: "Tasks",
+                                task1: "Complete 50 practice questions on Purchases, Project, Timesheet, and HR (I Value Academy).",
+                                task2: "Review: Quizlet - Odoo Functional Training Flashcards."
+                            },
+                            week4: {
+                                title: "Week 4: Low-Priority Modules & Final Review",
+                                goals: "Goals",
+                                goal1: "Cover Website (4%), eCommerce (4%), Marketing (4%), Survey (2%), Knowledge (2%), Spreadsheet (2%), POS (2%), Studio (2%).",
+                                goal2: "Simulate full exam and refine strategies.",
+                                schedule: "Schedule",
+                                day12_label: "Day 1-2: Website, eCommerce, Marketing",
+                                day12: { task1: "Study: Website Builder, Product Catalog, Email Campaigns, SEO Optimization.", task2: "Practice: Build a simple website, set up an eCommerce store, create a marketing campaign." },
+                                day3_label: "Day 3: Survey, Knowledge, Spreadsheet, POS",
+                                day3: { task1: "Study: Survey Creation, Knowledge Articles, Spreadsheet Reporting, POS Operations.", task2: "Practice: Create a survey, manage knowledge articles, build a spreadsheet report, process POS transactions." },
+                                day4_label: "Day 4: Studio",
+                                day4: { task1: "Study: Custom Fields, View Customization, Automated Actions.", task2: "Practice: Add custom fields, modify views, set up automated actions using Odoo Studio." },
+                                day57_label: "Day 5-7: Final Review & Mock Exams",
+                                day57: { task1: "Review all modules, focusing on weak areas.", task2: "Complete full mock exams (I Value Academy, ExamsEmpire).", task3: "Practice time management: Skip questions taking >3 minutes, avoid guessing due to -0.5 point penalty." },
+                                tasks: "Tasks",
+                                task1: "Complete 100 practice questions covering all modules.",
+                                task2: "Simulate a full 125-question exam under timed conditions.",
+                                task3: "Review: Odoo Certification Sample Test, Reddit r/Odoo discussions."
+                            }
+                        },
+                        studyPlan: {
+                            title: "1-Month Study Plan",
+                            week1: {
+                                title: "Week 1: Foundation & High-Priority Modules (Accounting, Inventory)",
+                                goals: "Goals",
+                                goal1: "Understand Odoo basics, UI, and system settings.",
+                                goal2: "Master Accounting (10%) and Inventory (10%) modules.",
+                                goal3: "Practice end-to-end business flows.",
+                                schedule: "Schedule",
+                                day12: "Day 1-2: Odoo Basics & Setup",
+                                day12: { task1: "Read: Odoo Documentation - User Interface, Company Settings, Users & Access Rights.", task2: "Practice: Set up an Odoo 18 instance, configure users, access rights, multi-company settings." },
+                                day35: "Day 3-5: Accounting (10%)",
+                                day35: { task1: "Study: Chart of Accounts, Journals, Taxes, Fiscal Positions, Multi-Currency, Bank Reconciliation, Budgeting.", task2: "Practice: Create invoices, vendor bills, reconcile bank statements, generate Balance Sheet and Profit & Loss reports." },
+                                day67: "Day 6-7: Inventory (10%)",
+                                day67: { task1: "Study: Product Types, Warehouses, Locations, Routes, Stock Moves, Traceability, Inventory Valuation.", task2: "Practice: Configure warehouses, set up reordering rules, perform receipts, deliveries, inventory adjustments." },
+                                tasks: "Tasks",
+                                task1: "Complete 50 practice questions on Accounting and Inventory (I Value Academy).",
+                                task2: "Create a sample business flow: Sales Order → Delivery → Invoice → Payment.",
+                                task3: "Review: Quizlet Odoo V18 Certification Flash Cards."
+                            },
+                            week2: {
+                                title: "Week 2: High-Priority (MRP) & Medium-Priority Modules (CRM, Sales)",
+                                goals: "Goals",
+                                goal1: "Master MRP (10%), CRM (8%), Sales (8%) modules.",
+                                goal2: "Understand module integrations.",
+                                schedule: "Schedule",
+                                day13: "Day 1-3: MRP (10%)",
+                                day13: { task1: "Study: Bills of Materials, Routings, Work Centers, Manufacturing Orders.", task2: "Practice: Create BoMs, generate Manufacturing Orders, manage production." },
+                                day45: "Day 4-5: CRM (8%)",
+                                day45: { task1: "Study: Lead Management, Opportunity Pipelines, Activities, Forecasting.", task2: "Practice: Create leads, convert to opportunities, manage pipeline stages, analyze CRM reports." },
+                                day67: "Day 6-7: Sales (8%)",
+                                day67: { task1: "Study: Quotations, Sales Orders, Pricing, Invoicing Policies, Loyalty Programs.", task2: "Practice: Create quotations, convert to sales orders, apply discounts, generate invoices." },
+                                tasks: "Tasks",
+                                task1: "Complete 50 practice questions on MRP, CRM, and Sales (ExamsEmpire).",
+                                task2: "Practice flow: Lead → Opportunity → Quotation → Sales Order → Delivery.",
+                                task3: "Review: Odoo Slides - CRM & Sales Tutorials."
+                            },
+                            week3: {
+                                title: "Week 3: Medium-Priority Modules (Purchases, Project, Timesheet, HR)",
+                                goals: "Goals",
+                                goal1: "Master Purchases (8%), Project (6%), Timesheet (6%), and HR (6%) modules.",
+                                goal2: "Deepen understanding of cross-module integrations.",
+                                schedule: "Schedule",
+                                day12: "Day 1-2: Purchases (8%)",
+                                day12: { task1: "Study: RFQs, Purchase Orders, Vendor Management, Three-way Matching.", task2: "Practice: Create RFQs, convert to POs, receive products, create vendor bills." },
+                                day34: "Day 3-4: Project (6%) & Timesheet (6%)",
+                                day34: { task1: "Study: Project Setup, Task Management, Timesheet Recording, Invoicing based on Timesheets.", task2: "Practice: Create projects, assign tasks, record timesheets, link to sales orders." },
+                                day56: "Day 5-6: HR (6%)",
+                                day56: { task1: "Study: Employee Management, Recruitment, Time Off, Payroll, Appraisals.", task2: "Practice: Create employee records, manage time-off requests, set up recruitment pipelines." },
+                                day7: "Day 7: Integration Practice",
+                                day7: { task1: "Practice: Run flow from Purchase Order → Receipt → Vendor Bill → Payment.", task2: "Practice: Sales Order → Project → Timesheet → Invoice." },
+                                tasks: "Tasks",
+                                task1: "Complete 50 practice questions on Purchases, Project, Timesheet, and HR (I Value Academy).",
+                                task2: "Review: Quizlet - Odoo Functional Training Flashcards."
+                            },
+                            week4: {
+                                title: "Week 4: Low-Priority Modules & Final Review",
+                                goals: "Goals",
+                                goal1: "Cover Website (4%), eCommerce (4%), Marketing (4%), Survey (2%), Knowledge (2%), Spreadsheet (2%), POS (2%), Studio (2%).",
+                                goal2: "Simulate full exam and refine strategies.",
+                                schedule: "Schedule",
+                                day12: "Day 1-2: Website, eCommerce, Marketing",
+                                day12: { task1: "Study: Website Builder, Product Catalog, Email Campaigns, SEO Optimization.", task2: "Practice: Build a simple website, set up an eCommerce store, create a marketing campaign." },
+                                day3: "Day 3: Survey, Knowledge, Spreadsheet, POS",
+                                day3: { task1: "Study: Survey Creation, Knowledge Articles, Spreadsheet Reporting, POS Operations.", task2: "Practice: Create a survey, manage knowledge articles, build a spreadsheet report, process POS transactions." },
+                                day4: "Day 4: Studio",
+                                day4: { task1: "Study: Custom Fields, View Customization, Automated Actions.", task2: "Practice: Add custom fields, modify views, set up automated actions using Odoo Studio." },
+                                day57: "Day 5-7: Final Review & Mock Exams",
+                                day57: { task1: "Review all modules, focusing on weak areas.", task2: "Complete full mock exams (I Value Academy, ExamsEmpire).", task3: "Practice time management: Skip questions taking >3 minutes, avoid guessing due to -0.5 point penalty." },
+                                tasks: "Tasks",
+                                task1: "Complete 100 practice questions covering all modules.",
+                                task2: "Simulate a full 125-question exam under timed conditions.",
+                                task3: "Review: Odoo Certification Sample Test, Reddit r/Odoo discussions."
+                            }
+                        },
+                        modules: {
+                            title: "Module Breakdown",
+                            accounting: { title: "Accounting (10%)", content: "Chart of Accounts, Journals, Taxes, Fiscal Positions, Bank Reconciliation, Budgeting, Multi-Currency. Practice creating invoices and generating financial reports." },
+                            inventory: { title: "Inventory (10%)", content: "Product Types, Warehouses, Routes, Stock Moves, Traceability, Inventory Valuation. Configure warehouses and reordering rules." },
+                            mrp: { title: "MRP (10%)", content: "Bills of Materials, Routings, Work Centers, Manufacturing Orders. Create BoMs and manage production processes." },
+                            crm: { title: "CRM (8%)", content: "Lead Management, Opportunity Pipelines, Activities, Forecasting. Manage leads and analyze pipeline reports." },
+                            sales: { title: "Sales (8%)", content: "Quotations, Sales Orders, Pricing, Invoicing Policies. Create quotations and apply discounts." },
+                            purchases: { title: "Purchases (8%)", content: "RFQs, Purchase Orders, Vendor Management, Three-way Matching. Create POs and manage vendor bills." },
+                            project: { title: "Project (6%)", content: "Project Setup, Task Management, Milestones. Create projects and assign tasks." },
+                            timesheet: { title: "Timesheet (6%)", content: "Timesheet Recording, Invoicing based on Timesheets. Record timesheets and link to sales orders." },
+                            hr: { title: "HR (6%)", content: "Employee Management, Recruitment, Time Off, Payroll. Manage employee records and recruitment pipelines." },
+                            website: { title: "Website (4%)", content: "Website Builder, Blog Posts, SEO Optimization. Build and customize websites." },
+                            ecommerce: { title: "eCommerce (4%)", content: "Product Catalog, Checkout Process, Payment Gateways. Set up an eCommerce store." },
+                            marketing: { title: "Marketing (4%)", content: "Email Campaigns, Marketing Automation. Create and analyze marketing campaigns." },
+                            survey: { title: "Survey (2%)", content: "Survey Creation, Question Types, Result Analysis. Design and distribute surveys." },
+                            knowledge: { title: "Knowledge (2%)", content: "Knowledge Articles, Categories, Access Control. Manage and share knowledge articles." },
+                            spreadsheet: { title: "Spreadsheet (2%)", content: "Spreadsheet Reporting, Pivot Tables. Create custom reports with Odoo Spreadsheet." },
+                            pos: { title: "POS (2%)", content: "POS Operations, Offline Mode, Payment Methods. Process sales transactions." },
+                            studio: { title: "Studio (2%)", content: "Custom Fields, View Customization, Automated Actions. Customize Odoo without coding." }
+                        },
+                        resources: {
+                            title: "Resources",
+                            doc: "Odoo 18 Documentation",
+                            slides: "Odoo Slides",
+                            iva: "I Value Academy",
+                            exams: "ExamsEmpire",
+                            quizlet: "Quizlet Flashcards",
+                            reddit: "Reddit r/Odoo",
+                            firebits: "FireBits"
+                        },
+                        tips: {
+                            title: "Final Tips & Community Insights",
+                            handsOn: "Practice Hands-On: Run end-to-end scenarios in Odoo 18.",
+                            why: "Understand 'Why': Learn why Odoo features solve business problems.",
+                            time: "Manage Time: Skip questions taking >3 minutes.",
+                            guessing: "Avoid Guessing: Only answer when confident due to -0.5 point penalty.",
+                            community1: "'Accounting, Inventory, and MRP have many tricky questions. Focus on hands-on experience.' - Bashir Idris",
+                            community2: "'The exam is comprehensive but approachable with solid platform understanding. Expertise comes from real-world experience.' - Kamel Mohamed",
+                            community3: "'Certification validates knowledge, but true expertise is built through continuous learning and implementation.' - Dhruvik Dudhat",
+                            community4: "'The exam is long but covers core features. Continuous learning is essential.' - Ahmed Al Maghrabi",
+                            community5: "'New features in POS, Projects, and Sales are impressive. Budgeting in Accounting is a game-changer.' - Hasnain Ali"
+                        },
+                        footer: "Created by Vuong Van Thong for Odoo 18 Certification Preparation | July 2025"
+                    }},
+                    vi: {
+                        translation: {
+                            header: {
+                                title: "Kế Hoạch Ôn Tập Chứng Chỉ Odoo 18 Functional",
+                                subtitle: "Hướng Dẫn Toàn Diện Trong 1 Tháng"
+                            },
+                            sidebar: {
+                                nav: "Điều Hướng",
+                                introduction: "Giới Thiệu",
+                                examOverview: "Tổng Quan Kỳ Thi",
+                                studyStrategies: "Chiến Lược Ôn Tập",
+                                studyPlan: "Kế Hoạch Ôn Tập",
+                                modules: "Các Module",
+                                resources: "Tài Liệu",
+                                tips: "Lời Khuyên Cuối Cùng",
+                                progress: "Theo Dõi Tiến Độ"
+                            },
+                            introduction: {
+                                title: "Giới Thiệu",
+                                content: "Chào mừng bạn đến với kế hoạch ôn tập 1 tháng cho Chứng chỉ Odoo 18 Functional! Kế hoạch này được thiết kế để giúp bạn nắm vững các module cốt lõi của Odoo 18, hiểu các luồng nghiệp vụ và phát triển chiến lược làm bài thi hiệu quả. Với 125 câu hỏi trong 90 phút và điểm đỗ 70%, việc chuẩn bị kỹ lưỡng là chìa khóa. Câu trả lời đúng được +1 điểm, sai bị trừ -0.5 điểm, không trả lời được 0 điểm. Tập trung vào thực hành thực tế, hiểu sâu và quản lý thời gian chiến lược."
+                            },
+                            examOverview: {
+                                title: "Tổng Quan Kỳ Thi",
+                                table: {
+                                    criteria: "Tiêu chí",
+                                    details: "Chi tiết",
+                                    name: "Tên Chứng Chỉ",
+                                    nature: "Tính Chất",
+                                    natureDetail: "Không thể chuyển nhượng",
+                                    duration: "Thời Lượng",
+                                    questions: "Tổng Số Câu Hỏi",
+                                    passingScore: "Điểm Đỗ Tối Thiểu",
+                                    scoring: "Cơ Chế Tính Điểm",
+                                    scoringDetail: "Đúng: +1, Sai: -0.5, Không trả lời: 0",
+                                    modules: "Các Module Được Kiểm Tra"
+                                }
+                            },
+                            studyStrategies: {
+                                title: "Chiến Lược Ôn Tập",
+                                handsOn: "Thực Hành Thực Tế: Thiết lập một instance Odoo 18 (Odoo Online hoặc Odoo.sh) và chạy các kịch bản từ đầu đến cuối (ví dụ: Lead đến Thanh toán).",
+                                moduleFocus: "Tập Trung Module: Ưu tiên các module trọng số cao (Kế toán, Kho, MRP: 10% mỗi module), sau đó là trung bình (CRM, Bán hàng, Mua hàng: 6-8%), và thấp (Website, eCommerce, v.v.: 2-4%).",
+                                timeManagement: "Quản Lý Thời Gian: Luyện tập với các bài thi mô phỏng có thời gian (43 giây/câu). Bỏ qua câu hỏi mất quá 3 phút.",
+                                avoidGuessing: "Tránh Đoán Mò: Do bị trừ -0.5 điểm cho câu sai, chỉ trả lời khi tự tin.",
+                                resources: "Sử Dụng Tài Liệu: Kết hợp Tài liệu Odoo, I Value Academy, ExamsEmpire và flashcards Quizlet.",
+                                community: "Tham Gia Cộng Đồng: Tham gia Reddit r/Odoo và diễn đàn Odoo để có thêm thông tin."
+                            },
+                            studyPlan: {
+                                title: "Kế Hoạch Ôn Tập 1 Tháng",
+                                week1: {
+                                    title: "Tuần 1: Nền Tảng & Các Module Trọng Số Cao (Kế Toán, Kho)",
+                                    goals: "Mục Tiêu",
+                                    goal1: "Hiểu các khái niệm cơ bản, giao diện và cài đặt hệ thống của Odoo.",
+                                    goal2: "Nắm vững các module Kế Toán (10%) và Kho (10%).",
+                                    goal3: "Thực hành các luồng nghiệp vụ từ đầu đến cuối.",
+                                    schedule: "Lịch Trình",
+                                    day12: "Ngày 1-2: Cơ Bản & Cài Đặt Odoo",
+                                    day12: { task1: "Đọc: Tài liệu Odoo - Giao Diện Người Dùng, Cài Đặt Công Ty, Quyền Truy Cập.", task2: "Thực hành: Thiết lập một instance Odoo 18, cấu hình người dùng, quyền truy cập, cài đặt đa công ty." },
+                                    day35: "Ngày 3-5: Kế Toán (10%)",
+                                    day35: { task1: "Học: Sơ đồ tài khoản, Nhật ký, Thuế, Vị trí tài chính, Đa tiền tệ, Đối chiếu ngân hàng, Ngân sách.", task2: "Thực hành: Tạo hóa đơn, hóa đơn nhà cung cấp, đối chiếu ngân hàng, tạo báo cáo Cân đối kế toán và Lãi lỗ." },
+                                    day67: "Ngày 6-7: Kho (10%)",
+                                    day67: { task1: "Học: Loại sản phẩm, Kho, Địa điểm, Tuyến đường, Di chuyển hàng, Truy xuất nguồn gốc, Định giá tồn kho.", task2: "Thực hành: Cấu hình kho, thiết lập quy tắc đặt hàng lại, thực hiện nhận hàng, giao hàng, điều chỉnh tồn kho." },
+                                    tasks: "Nhiệm Vụ",
+                                    task1: "Hoàn thành 50 câu hỏi thực hành về Kế Toán và Kho (I Value Academy).",
+                                    task2: "Tạo một luồng nghiệp vụ mẫu: Đơn hàng bán → Giao hàng → Hóa đơn → Thanh toán.",
+                                    task3: "Ôn tập: Flashcards Quizlet Odoo V18 Certification."
+                                },
+                                week2: {
+                                    title: "Tuần 2: Trọng Số Cao (MRP) & Module Trọng Số Trung Bình (CRM, Bán Hàng)",
+                                    goals: "Mục Tiêu",
+                                    goal1: "Nắm vững các module MRP (10%), CRM (8%), Bán Hàng (8%).",
+                                    goal2: "Hiểu tích hợp giữa các module.",
+                                    schedule: "Lịch Trình",
+                                    day13: "Ngày 1-3: MRP (10%)",
+                                    day13: { task1: "Học: Định mức nguyên vật liệu, Định tuyến, Trung tâm làm việc, Lệnh sản xuất.", task2: "Thực hành: Tạo BoM, tạo lệnh sản xuất, quản lý quy trình sản xuất." },
+                                    day45: "Ngày 4-5: CRM (8%)",
+                                    day45: { task1: "Học: Quản lý Lead, Đường ống cơ hội, Hoạt động, Dự báo.", task2: "Thực hành: Tạo lead, chuyển đổi thành cơ hội, quản lý giai đoạn đường ống, phân tích báo cáo CRM." },
+                                    day67: "Ngày 6-7: Bán Hàng (8%)",
+                                    day67: { task1: "Học: Báo giá, Đơn hàng bán, Định giá, Chính sách lập hóa đơn, Chương trình khách hàng thân thiết.", task2: "Thực hành: Tạo báo giá, chuyển thành đơn hàng bán, áp dụng chiết khấu, tạo hóa đơn." },
+                                    tasks: "Nhiệm Vụ",
+                                    task1: "Hoàn thành 50 câu hỏi thực hành về MRP, CRM và Bán Hàng (ExamsEmpire).",
+                                    task2: "Thực hành luồng: Lead → Cơ hội → Báo giá → Đơn hàng bán → Giao hàng.",
+                                    task3: "Ôn tập: Odoo Slides - Hướng dẫn CRM & Bán Hàng."
+                                },
+                                week3: {
+                                    title: "Tuần 3: Các Module Trọng Số Trung Bình (Mua Hàng, Dự Án, Bảng Chấm Công, Nhân Sự)",
+                                    goals: "Mục Tiêu",
+                                    goal1: "Nắm vững các module Mua Hàng (8%), Dự Án (6%), Bảng Chấm Công (6%) và Nhân Sự (6%).",
+                                    goal2: "Hiểu sâu về tích hợp giữa các module.",
+                                    schedule: "Lịch Trình",
+                                    day12: "Ngày 1-2: Mua Hàng (8%)",
+                                    day12: { task1: "Học: Yêu cầu báo giá, Đơn đặt hàng, Quản lý nhà cung cấp, Đối chiếu ba bên.", task2: "Thực hành: Tạo RFQ, chuyển thành PO, nhận sản phẩm, tạo hóa đơn nhà cung cấp." },
+                                    day34: "Ngày 3-4: Dự Án (6%) & Bảng Chấm Công (6%)",
+                                    day34: { task1: "Học: Thiết lập dự án, Quản lý công việc, Ghi nhận bảng chấm công, Lập hóa đơn dựa trên bảng chấm công.", task2: "Thực hành: Tạo dự án, phân công công việc, ghi nhận bảng chấm công, liên kết với đơn hàng bán." },
+                                    day56: "Ngày 5-6: Nhân Sự (6%)",
+                                    day56: { task1: "Học: Quản lý nhân viên, Tuyển dụng, Nghỉ phép, Bảng lương, Đánh giá.", task2: "Thực hành: Tạo hồ sơ nhân viên, quản lý yêu cầu nghỉ phép, thiết lập đường ống tuyển dụng." },
+                                    day7: "Ngày 7: Thực Hành Tích Hợp",
+                                    day7: { task1: "Thực hành: Chạy luồng từ Đơn đặt hàng → Nhận hàng → Hóa đơn nhà cung cấp → Thanh toán.", task2: "Thực hành: Đơn hàng bán → Dự án → Bảng chấm công → Hóa đơn." },
+                                    tasks: "Nhiệm Vụ",
+                                    task1: "Hoàn thành 50 câu hỏi thực hành về Mua Hàng, Dự Án, Bảng Chấm Công và Nhân Sự (I Value Academy).",
+                                    task2: "Ôn tập: Flashcards Quizlet - Đào tạo chức năng Odoo."
+                                },
+                                week4: {
+                                    title: "Tuần 4: Các Module Trọng Số Thấp & Ôn Tập Cuối Cùng",
+                                    goals: "Mục Tiêu",
+                                    goal1: "Nắm các module Website (4%), eCommerce (4%), Marketing (4%), Khảo sát (2%), Kiến thức (2%), Bảng tính (2%), POS (2%), Studio (2%).",
+                                    goal2: "Mô phỏng kỳ thi đầy đủ và tinh chỉnh chiến lược.",
+                                    schedule: "Lịch Trình",
+                                    day12: "Ngày 1-2: Website, eCommerce, Marketing",
+                                    day12: { task1: "Học: Trình tạo Website, Danh mục sản phẩm, Chiến dịch email, Tối ưu hóa SEO.", task2: "Thực hành: Xây dựng một website đơn giản, thiết lập cửa hàng eCommerce, tạo chiến dịch marketing." },
+                                    day3: "Ngày 3: Khảo sát, Kiến thức, Bảng tính, POS",
+                                    day3: { task1: "Học: Tạo khảo sát, Bài viết kiến thức, Báo cáo bảng tính, Hoạt động POS.", task2: "Thực hành: Tạo khảo sát, quản lý bài viết kiến thức, xây dựng báo cáo bảng tính, xử lý giao dịch POS." },
+                                    day4: "Ngày 4: Studio",
+                                    day4: { task1: "Học: Trường tùy chỉnh, Tùy chỉnh giao diện, Hành động tự động.", task2: "Thực hành: Thêm trường tùy chỉnh, sửa đổi giao diện, thiết lập hành động tự động bằng Odoo Studio." },
+                                    day57: "Ngày 5-7: Ôn Tập Cuối Cùng & Thi Thử",
+                                    day57: { task1: "Ôn tập tất cả các module, tập trung vào các điểm yếu.", task2: "Hoàn thành các bài thi thử đầy đủ (I Value Academy, ExamsEmpire).", task3: "Luyện tập quản lý thời gian: Bỏ qua câu hỏi mất quá 3 phút, tránh đoán mò do bị trừ -0.5 điểm." },
+                                    tasks: "Nhiệm Vụ",
+                                    task1: "Hoàn thành 100 câu hỏi thực hành bao quát tất cả các module.",
+                                    task2: "Mô phỏng bài thi đầy đủ 125 câu hỏi dưới điều kiện thời gian.",
+                                    task3: "Ôn tập: Bài thi mẫu Odoo Certification, thảo luận Reddit r/Odoo."
+                                }
+                            },
+                            modules: {
+                                title: "Phân Tích Module",
+                                accounting: { title: "Kế Toán (10%)", content: "Sơ đồ tài khoản, Nhật ký, Thuế, Vị trí tài chính, Đối chiếu ngân hàng, Ngân sách, Đa tiền tệ. Thực hành tạo hóa đơn và tạo báo cáo tài chính." },
+                                inventory: { title: "Kho (10%)", content: "Loại sản phẩm, Kho, Tuyến đường, Di chuyển hàng, Truy xuất nguồn gốc, Định giá tồn kho. Cấu hình kho và quy tắc đặt hàng lại." },
+                                mrp: { title: "MRP (10%)", content: "Định mức nguyên vật liệu, Định tuyến, Trung tâm làm việc, Lệnh sản xuất. Tạo BoM và quản lý quy trình sản xuất." },
+                                crm: { title: "CRM (8%)", content: "Quản lý Lead, Đường ống cơ hội, Hoạt động, Dự báo. Quản lý lead và phân tích báo cáo đường ống." },
+                                sales: { title: "Bán Hàng (8%)", content: "Báo giá, Đơn hàng bán, Định giá, Chính sách lập hóa đơn. Tạo báo giá và áp dụng chiết khấu." },
+                                purchases: { title: "Mua Hàng (8%)", content: "Yêu cầu báo giá, Đơn đặt hàng, Quản lý nhà cung cấp, Đối chiếu ba bên. Tạo PO và quản lý hóa đơn nhà cung cấp." },
+                                project: { title: "Dự Án (6%)", content: "Thiết lập dự án, Quản lý công việc, Mốc quan trọng. Tạo dự án và phân công công việc." },
+                                timesheet: { title: "Bảng Chấm Công (6%)", content: "Ghi nhận bảng chấm công, Lập hóa đơn dựa trên bảng chấm công. Ghi nhận bảng chấm công và liên kết với đơn hàng bán." },
+                                hr: { title: "Nhân Sự (6%)", content: "Quản lý nhân viên, Tuyển dụng, Nghỉ phép, Bảng lương. Quản lý hồ sơ nhân viên và đường ống tuyển dụng." },
+                                website: { title: "Website (4%)", content: "Trình tạo Website, Bài đăng blog, Tối ưu hóa SEO. Xây dựng và tùy chỉnh website." },
+                                ecommerce: { title: "eCommerce (4%)", content: "Danh mục sản phẩm, Quy trình thanh toán, Cổng thanh toán. Thiết lập cửa hàng eCommerce." },
+                                marketing: { title: "Marketing (4%)", content: "Chiến dịch email, Tự động hóa marketing. Tạo và phân tích chiến dịch marketing." },
+                                survey: { title: "Khảo Sát (2%)", content: "Tạo khảo sát, Loại câu hỏi, Phân tích kết quả. Thiết kế và phân phối khảo sát." },
+                                knowledge: { title: "Kiến Thức (2%)", content: "Bài viết kiến thức, Danh mục, Kiểm soát truy cập. Quản lý và chia sẻ bài viết kiến thức." },
+                                spreadsheet: { title: "Bảng Tính (2%)", content: "Báo cáo bảng tính, Bảng xoay. Tạo báo cáo tùy chỉnh với Bảng tính Odoo." },
+                                pos: { title: "POS (2%)", content: "Hoạt động POS, Chế độ ngoại tuyến, Phương thức thanh toán. Xử lý giao dịch bán hàng." },
+                                studio: { title: "Studio (2%)", content: "Trường tùy chỉnh, Tùy chỉnh giao diện, Hành động tự động. Tùy chỉnh Odoo mà không cần lập trình." }
+                            },
+                            resources: {
+                                title: "Tài Liệu",
+                                doc: "Tài liệu Odoo 18",
+                                slides: "Odoo Slides",
+                                iva: "I Value Academy",
+                                exams: "ExamsEmpire",
+                                quizlet: "Flashcards Quizlet",
+                                reddit: "Reddit r/Odoo",
+                                firebits: "FireBits"
+                            },
+                            tips: {
+                                title: "Lời Khuyên Cuối Cùng & Thông Tin Cộng Đồng",
+                                handsOn: "Thực Hành Thực Tế: Chạy các kịch bản từ đầu đến cuối trong Odoo 18.",
+                                why: "Hiểu 'Tại Sao': Tìm hiểu tại sao các tính năng Odoo giải quyết vấn đề kinh doanh.",
+                                time: "Quản Lý Thời Gian: Bỏ qua các câu hỏi mất quá 3 phút.",
+                                guessing: "Tránh Đoán Mò: Chỉ trả lời khi tự tin do bị trừ -0.5 điểm.",
+                                community1: "'Kế Toán, Kho và MRP có nhiều câu hỏi mẹo. Tập trung vào kinh nghiệm thực tế.' - Bashir Idris",
+                                community2: "'Kỳ thi toàn diện nhưng có thể tiếp cận được nếu hiểu vững nền tảng. Chuyên môn đến từ kinh nghiệm thực tế.' - Kamel Mohamed",
+                                community3: "'Chứng chỉ xác nhận kiến thức, nhưng chuyên môn thực sự được xây dựng qua học tập và triển khai liên tục.' - Dhruvik Dudhat",
+                                community4: "'Kỳ thi dài nhưng bao quát các tính năng cốt lõi. Học tập liên tục là cần thiết.' - Ahmed Al Maghrabi",
+                                community5: "'Các tính năng mới trong POS, Dự Án và Bán Hàng rất ấn tượng. Ngân sách trong Kế Toán là một thay đổi lớn.' - Hasnain Ali"
+                            },
+                            footer: "Được tạo bởi Vương Văn Thông cho việc chuẩn bị Chứng chỉ Odoo 18 | Tháng 7 năm 2025"
+                        }
+                    }
+                }
+            }, (err, t) => {
+                if (err) {
+                    console.error('i18next initialization error:', err);
+                    return;
+                }
+                updateContent();
+            });
+
+        // Function to update content based on selected language
+// ...existing code...
+        // Function to update content based on selected language
+        function updateContent() {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                // If the element is a <strong> and the translation is missing, fallback to its textContent
+                const translation = i18next.t(key);
+                if (translation === key) {
+                    // fallback: do not overwrite if translation missing
+                    return;
+                }
+                element.innerHTML = translation;
+            });
+        }
+// ...existing code...
+
+        // Language switcher event listener
+        document.getElementById('language-switcher').addEventListener('change', (e) => {
+            i18next.changeLanguage(e.target.value, (err, t) => {
+                if (err) {
+                    console.error('Language change error:', err);
+                    return;
+                }
+                updateContent();
+            });
+        });
+
+        // Toggle week sections
+        function toggleWeek(element) {
+            const content = element.nextElementSibling;
+            const arrow = element.querySelector('span');
+            content.classList.toggle('open');
+            arrow.textContent = content.classList.contains('open') ? '▲' : '▼';
+        }
+
+        // Progress slider functionality
+        const progressBar = document.getElementById('progress-bar');
+        const progressValue = document.getElementById('progress-value');
+        const progressSlider = document.getElementById('progress-slider');
+
+        progressSlider.addEventListener('input', () => {
+            progressBar.style.width = `${progressSlider.value}%`;
+            progressValue.textContent = `${progressSlider.value}%`;
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('.nav-link').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Persist progress in localStorage
+        progressSlider.addEventListener('change', () => {
+            localStorage.setItem('studyProgress', progressSlider.value);
+        });
+
+        // Load progress from localStorage on page load
+        window.addEventListener('load', () => {
+            const savedProgress = localStorage.getItem('studyProgress');
+            if (savedProgress) {
+                progressSlider.value = savedProgress;
+                progressBar.style.width = `${savedProgress}%`;
+                progressValue.textContent = `${savedProgress}%`;
+            }
+        });
+    </script>
